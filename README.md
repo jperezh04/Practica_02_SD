@@ -42,14 +42,3 @@ py -3.11 -m pip install -r requirements.txt
 ```cmd
 py -3.11 src\train.py
 ```
-
-Notas
------
-- Si quieres evitar la compilación de bytecode en el primer import (optimizar arranque), puedes precompilar la stdlib con:
-
-```cmd
-py -3.11 -m compileall -q C:\Path\To\Python311\Lib
-```
-
-- Ajusta `ScalingConfig` en `src/train.py` para cambiar `num_workers` o habilitar GPU (`use_gpu=True`) si tu entorno lo soporta.
-
