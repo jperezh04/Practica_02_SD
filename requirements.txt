@@ -1,0 +1,6 @@
+ray[train]
+torch
+torchvision
+numpy
+pandas
+pillow
