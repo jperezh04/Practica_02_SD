@@ -1,1 +1,0 @@
-# SDTeoRAY_Practica2
