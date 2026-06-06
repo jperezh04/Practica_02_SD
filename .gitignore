@@ -1,0 +1,12 @@
+venv/
+__pycache__/
+*.pyc
+
+datasets/MNIST/
+
+.idea/
+.vscode/
+
+ray_results/
+
+*.log
