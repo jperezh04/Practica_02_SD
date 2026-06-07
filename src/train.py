@@ -17,7 +17,7 @@ from torchvision import datasets, transforms
 from ray.train import ScalingConfig
 from ray.train.torch import TorchTrainer, prepare_model
 from ray import train
- 
+from monitor import record_epoch
 from model import NeuralNet
  
 logging.getLogger("ray").setLevel(logging.WARNING)
@@ -83,7 +83,13 @@ if __name__ == "__main__":
     args = parser.parse_args()
  
     print(f"Iniciando Ray con {args.workers} workers...")
-    ray.init(address="local", ignore_reinit_error=True)
+    ray.init(
+        address="local",
+        ignore_reinit_error=True,
+        dashboard_host="0.0.0.0",
+        dashboard_port=8265,
+        object_store_memory=2 * 1024 * 1024 * 1024,  # 2 GiB
+    )
  
     # -------------------------------------------------------
     # Preparar dataset MNIST como Ray Dataset
@@ -136,6 +142,7 @@ if __name__ == "__main__":
     print(f"Tiempo total:  {elapsed:.2f} segundos")
     print(f"Métricas finales: {result.metrics}")
     print("="*50)
- 
+    record_epoch(worker_id=str(rank), duration=elapsed, loss=loss_val, num_images=len(dataset))
+    
     ray.shutdown()
     print("Ray finalizado correctamente.")

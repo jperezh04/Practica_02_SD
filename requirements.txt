@@ -1,6 +1,8 @@
-ray[train]
-torch
-torchvision
-numpy
-pandas
-pillow
+ray[train,tune,data]==2.55.1
+torch==2.12.0
+torchvision==0.27.0
+numpy>=2.0
+matplotlib>=3.8
+psutil>=5.9
+pandas>=2.2
+ 
